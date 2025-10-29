@@ -1,0 +1,54 @@
+  <!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Connexion - NeoIPTV</title>
+<link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-card">
+      <img src="/public/logo.svg" alt="NeoIPTV" class="logo" />
+      <h2>Connexion</h2>
+      <form method="post" action="/api/auth">
+        <input type="password" name="password" placeholder="Mot de passe" required />
+        <button type="submit">Se connecter</button>
+      </form>export default function handler(req, res) {
+  res.setHeader('Set-Cookie', 'neoiptv_auth=; Path=/; Max-Age=0');
+  res.writeHead(302, { Location: '/public/login.html' });
+  res.end();
+}
+      <p class="hint">Mot de passe par défaut : <strong>admin</strong></p>
+    </div>
+  </div>{
+  "version": 2,
+  "builds": [
+    { "src": "api/*.js", "use": "@vercel/node" },
+    { "src": "public/*", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1.js" },
+    { "src": "/logout", "dest": "/api/logout.js" },
+    { "src": "/(.*)", "dest": "/public/$1" }
+  ]NeoIPTV - Vercel ready
+
+Fichiers:
+- public/login.html
+- public/index.html
+- public/style.css
+- public/logo.svg
+- api/proxy.js
+- api/auth.js
+- api/logout.js
+
+Déploiement:
+1) Crée un repo GitHub, pousse ce dossier
+2) Import sur vercel.com (Import Git Repository)
+3) Déploye
+
+Mot de passe par défaut: admin
+
+}
+</body>
+</html>
